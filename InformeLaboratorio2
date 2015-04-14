@@ -86,6 +86,8 @@ Logi(String tag, String msg) muestra un mensaje de informacion.
 Log.w(String tag, Throwable tr) muestra un mensaje de advertencia(warning).
 
 8. 
+a) La diferencia es que el Single thread ejecuta las tareas una por una y el multithread ejecuta multiples tareas
+en paralelo.
 
 b)Las tareas asincronas, AsyncTask son aquellas que permiten realizar operaciones en segundo plano y publicar
 los resultados en el hilo de interface de usuario,sin necesidad de manipular los hilos.
