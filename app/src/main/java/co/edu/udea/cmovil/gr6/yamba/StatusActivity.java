@@ -1,6 +1,7 @@
 package co.edu.udea.cmovil.gr6.yamba;
 
-import android.support.v7.app.ActionBarActivity;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.util.Log;
+import android.os.AsyncTask;
+
+import com.marakana.android.yamba.clientlib.YambaClient;
+import com.marakana.android.yamba.clientlib.YambaClientException;
 
 
-
-
-public class StatusActivity extends ActionBarActivity implements View.OnClickListener{
+public class StatusActivity extends Activity implements View.OnClickListener {
 
     private EditText editstatus;
     private Button buttonTweet;
@@ -23,24 +26,17 @@ public class StatusActivity extends ActionBarActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
-        editstatus= (EditText)findViewById(R.id.editStatus);
-        buttonTweet= (Button)findViewById(R.id.buttonTweet);
+        editstatus = (EditText) findViewById(R.id.editStatus);
+        buttonTweet = (Button) findViewById(R.id.buttonTweet);
         buttonTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String status = editstatus.getText().toString();
                 Log.d(TAG, "onClicked el boton with status: " + status);
+                new PostTask().execute(status);
             }
         });
     }
-
-
-    public void clickear(View view){
-        String status = editstatus.getText().toString();
-        Log.d(TAG, "onClicked el boton con clickear with status: " + status);
-
-    }
-
 
 
     @Override
@@ -56,18 +52,22 @@ public class StatusActivity extends ActionBarActivity implements View.OnClickLis
         Log.d(TAG, "onClicked with status: " + status);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private final class PostTask extends
+            AsyncTask<String, Void, String> { //
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        @Override
+        protected String doInBackground(String... params) { //
+            YambaClient yambaCloud =
+                    new YambaClient("student", "password");
+            try {
+                yambaCloud.postStatus(params[0]); //
+                return "Successfully posted";
+            } catch (YambaClientException e) {
+                e.printStackTrace();
+                return "Failed to post to yamba service";
+            }
         }
 
-        return super.onOptionsItemSelected(item);
+
     }
 }

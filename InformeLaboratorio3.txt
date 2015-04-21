@@ -1,0 +1,18 @@
+Laboratorio 3  Computación Móvil
+
+Heinner Esteban Alvarez Rivas CC 1214714151
+Carlos Andres Ramires Arbelaez CC 1042708194
+
+6)
+La linea View view = inflater.inflate(R.layout.fragment_status, container, false);
+crea una instancia de la clase view y la rellena con el contenido del archivo fragment_status, le asigna vista de contenedor y le asigna false al ViewGroup attachtoRoot.
+
+7)
+onCreateView()
+Es ejecutado cuando se crea la vista.
+
+onActivityCreated()
+Se ejecuta en el momento en que la actividad que contiene el fagment termina de ser creada.
+
+onStart(), onResume(), onPause(), onStop().
+Se ejecutan en el mismo momento que se ejecutan los metodos equivalentes de la actividad.

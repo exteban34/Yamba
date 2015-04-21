@@ -1,0 +1,100 @@
+
+Laboratorio 2  Computación Móvil
+
+Heinner Esteban Alvarez Rivas CC 1214714151
+Carlos Andres Ramires Arbelaez CC 1042708194
+ 
+
+
+
+1. crear un proyecto
+
+2.
+a)
+android:layout_height="wrap_content" : propiedad que define el ancho que tendrá una vista (view), en este caso 
+el ancho estará determinado por el tamaño del elemento que contenga(texto, imagen,etc.).
+
+android:layout_height="match_parent" : propiedad que define la altura que tendrá una vista (view), en este caso 
+la altura estará determinado por el tamaño del elemento padre en el cual este contenido(layout, ect.).
+
+android:hint="@string/hint_status" : Propiedad que establece el “hint” de una vista. En este caso es el valor 
+correspondiente al objeto hint_status en el archivo strings.xml
+
+android:inputType="textMultiLine": Propiedad que establece el tipo de entrada de una vista.
+
+
+b)
+wrap_content se refiere al tamaño del contenido de una vista, match_parent se refiere al tamaño del elemento 
+en el cual este contenida la vista.
+
+c) El id es el identificador de una vista dentro de la aplicación. Permite enlazar las vistas con el codigo 
+por medio del comando “findViewById”
+
+3.
+a)
+¬android:text="string/Tweet"
+
+Incorrecto:Falta @ que denota el tipo del elemento
+
+¬android:text="@button_tweet/string"
+
+Incorrecto:Se refiere a un elemento de tipo  button_tweet con id string, lo cual no existe en mi aplicación.
+
+¬android:hint="@string/hint_status"
+
+Correcto: Se refiere a un elemento de tipo string con id hint_status. Este elemento realmente existe en el 
+archivo strings.xml de mi aplicación.
+
+
+
+
+4.
+
+ a)
+la sentencia @Override denota que se esta sobre-escribiendo este método onCreate(), efectivamente mi  StatusActivity
+hereda de la activity ActionBarActivity (StatusActivity extends ActionBarActivity ), la cual ya contenía
+un método OnCreate por defecto.
+
+b)
+El metodo setContentView es el encargado de asociar una actividad a un archivo xml que contenga una vista.
+
+5.
+a)
+El metodo findViewById() se encarga de buscar una vista por medio de su id y asociarla a un  objeto dentro de 
+mis archivos.java.
+
+b)
+Se muestra el siguiente error:
+Error:(21, 33) error: incompatible types
+required: EditText
+found:    View
+
+Se debe a que el metodo findViewById() retorna un objeto View y lo estoy capturando en un objeto de tipo EditText.
+
+6.
+Implementar un botón
+
+7.
+a) Logging es el proceso de hacer un registro, una bitácora, de los eventos que suceden en la ejecución 
+de mi aplicación.
+
+b) es el sistema de logging que utiliza android.
+
+c)
+Log.e(String tag, String msg) muestra un mensaje de error.
+Logi(String tag, String msg) muestra un mensaje de informacion.
+Log.w(String tag, Throwable tr) muestra un mensaje de advertencia(warning).
+
+8. 
+a) La diferencia es que el Single thread ejecuta las tareas una por una y el multithread ejecuta multiples tareas
+en paralelo.
+
+b)Las tareas asincronas, AsyncTask son aquellas que permiten realizar operaciones en segundo plano y publicar
+los resultados en el hilo de interface de usuario,sin necesidad de manipular los hilos.
+Generalmente se crea una tarea asincrona interna en la  actividad que la llamara. Por lo general usan 3 tipos
+de parametros(parametros: para ejecutar la tarea, progreso: tipo de unidades de progreso que se publican durante
+la ejecucion, resultado: el tipo de resultado de la operacion realizada en segundo plano).
+El metodo doInBackground() se sobreescribe con el calculo o proceso que se realizara en segundo plano.
+
+c)El metodo onPostExecute se ejecuta en el hilo de la interface de usuario(o la activity que invoco nuestra 
+asyncTask) puede manipular los resultados obtenidos en el proceso ejecutado en segundo plano. 
