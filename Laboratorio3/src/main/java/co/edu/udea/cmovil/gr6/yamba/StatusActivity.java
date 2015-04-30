@@ -1,6 +1,7 @@
 package co.edu.udea.cmovil.gr6.yamba;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,4 +53,26 @@ public class StatusActivity extends Activity{
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()) {
+
+            case R.id.action_refresh:
+
+                startService(new Intent(this, RefreshService.class));
+                return true;
+
+            default:
+
+                return false;
+
+        }
+
+
+
+
+
+    }
 }
