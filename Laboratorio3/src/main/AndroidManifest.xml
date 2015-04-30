@@ -17,9 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="co.edu.udea.cmovil.gr6.yamba.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="@string/action_settings" >
         </activity>
+
+        <service
+            android:name=".RefreshService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>

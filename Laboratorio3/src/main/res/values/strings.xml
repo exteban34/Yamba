@@ -10,5 +10,6 @@
     <string name="password">Password</string>
     <string name="username_summary">User Name...</string>
     <string name="password_summary">User Name...</string>
+    <string name="refresh">Refresh</string>
 
 </resources>
