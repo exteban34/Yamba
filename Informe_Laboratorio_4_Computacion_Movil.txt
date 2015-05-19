@@ -1,0 +1,31 @@
+Informe Laboratorio 4
+
+5)
+
+onHandleIntent() es donde se hara el trabajo principal. Este trabajo sera ejecutado en un hilo
+separado. Esta es una de las principales diferencias entre un Service y un Intent Service.
+En el codigo que se agrega se optiene las preferencias y se extraen los username y password,
+se chequea que estos no esten vacios. Luego se optiene una referencia a YambaClient para poder
+conectarse a la nube. Se llama al metodo getYambaClient() en YambaApplication para optener un
+objeto yamba, y entonces se llamagetTimeline() para obtener los ultimos 20 estados de las pasadas
+24 horas. Se inicializa la lista timeline y se imprimen los estados en el LogCat.
+
+
+Service:
+
+Un Servicio es un componente de la aplicación sin interfaz.Como componente de la aplicación, 
+se ejecuta en el hilo principal de la aplicación.Para usarlo en segundo plano, hay que crear
+un nuevo hilo dentro del servicio.Puede vincularse (“bind”) a un Activity y Se inician
+y se paran mediante Intents, ya sean explícitos o de acción.
+
+IntentService:
+
+Un IntentService es un tipo especial de servicio que se ejecuta en segundo plano.Esta pensado 
+para realizar una tarea que requiera un largo procesamiento en segundo plano y después pararse solo.
+Su funcionamiento está desaconsejado para realizar tareas que tengan que ejecutarse indefinidamente.
+
+6)
+
+onDestroy se llama cuando se llama al comando “stopService()” o dentro del mismo service al método 
+“stopSelft()” es pasado por este método, dónde deben terminarse hilos o tareas que puedan estar 
+ejecutándose.

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Yamba-Gr6</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="button_tweet">Tweet</string>
+    <string name="hint_status">Qué hay de nuevo viejo?</string>
+    <string name="fragment2">I fragment 2</string>
+    <string name="username">User Name</string>
+    <string name="password">Password</string>
+    <string name="username_summary">User Name...</string>
+    <string name="password_summary">User Name...</string>
+    <string name="refresh">Refresh</string>
+
+</resources>

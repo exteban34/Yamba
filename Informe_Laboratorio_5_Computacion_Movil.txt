@@ -1,0 +1,107 @@
+Informe Laboratorio 5
+
+1)
+
+DB_NAME : Archivo SQLite que contiene la base de datos.
+DB_VERSION: Versionamiento de la base de datos. Puede ser cualquier numero.
+TABLE: Tabla SQL que contiene los datos.
+DEFAULT_SORT: Ordenamiento por defecto por timestamp, con el ultimo estado mostrado de primero.
+ID: Identificador que podria ser cualquiera pero se deberia seguir una convencion definida en 
+Android para nombrar este campo.
+
+2)
+
+onCreate():Tiene la declaracion en SQL que crea la base de datos y luego se ejecuta el metodo 
+execSQL() que es aprobado en el onCreate().
+onUpgrade():Se llama cuando la versión base de datos de los usuarios es diferente de la versión
+ de la aplicación.Esto normalmente ocurre cuando cambia el esquema y se libera la actualización 
+de la aplicación para los usuarios que ya tienen versión anterior de la aplicación.
+
+3)
+
+Se Importan las librerias necesarias para que le nuevo codigo del archivo RefreshService.java
+funcione correctamente.
+ContentValues es una estructura simple de par nombre-valor que mapea los nombre de la tabla de 
+la base de datos a sus respectivos valores. Luego para cada registro se crea un content value,
+utilizando en mismo objeto Java, limpiando cada vez que empieza el ciclo y rellenando los datos
+de estado con los valores adecuados.
+
+5)
+
+Uniform Resource Identifier (URI) es un string que identifica un recurso especifico, para localizar 
+un ContentProvider. Las partes de una URI son:
+
+content://com.marakana.android.yamba.StatusProvider/status/47
+
+ A                B                                   C     D
+
+
+A: Idica el content provider
+B: Authority. Normalmente es el nombre de la clase, todo en minúsculas. Esta authority debe coincidir
+con la autoridad que especificamos para este proveedor .
+C: status, indica el tipo de datos que este proveedor en particular ofrece.
+D: es un ID opcional para el elemento específico al que se está haciendo referencia.
+
+6)a)
+
+onCreate(): Crea un DbHelper.
+
+getType(): Sirve para permitir que otros recuperen el tipo de MIME de los datos.Utiliza sURIMatcher,
+una instancia de la clase API UriMatcher, paradeterminar si el URI tiene una parte ID. Basado en el
+tipo de URI que tenemos, getType () devuelve el tipo MIME adecuado que hemos definido anteriormente 
+enStatusContract.
+
+insert(): Sirve para insertar un nuevo registro en la base de datos por medio de la interfaz content
+provider. En primer lugar, comprobamos si la URI es válida, abre la base de datos para escribir, 
+tratamos de insertar los valores en la base de datos y, en una inserción exitosa, recibir el ID del
+nuevo registro de la base de datos. Si algo falla durante la inserción, la base de datos devolverá -1.
+ Entonces podemos tirar una excepción de tiempo de ejecución porque se trata de un error que nunca 
+debería haber ocurrido.Si la inserción se ha realizado correctamente, se utiliza el metodo ayudante
+ContentUris.withAppendedId() para diseñar una nueva URI que contiene el ID del nuevo registro adjunta
+al URI del proveedor estándar.
+
+update(): Sirve para actualizar los datos a través de la API de content provider. Se necesita: la URI
+del proveedor, los valores a actualizar y cualquier argumento o seleccion que valla con el.
+En primer lugar, comprobamos el tipo de URI que fue aprobada.Si la URI no contiene la ID, no tenemos
+mucho más que preocuparnos. Sin embargo, si el URI tiene un ID como parte de la ruta, que necesitamos 
+para extraerlo y actualizar nuestra sentencia WHERE para dar cuenta de ese ID. Abra la base de datos 
+para la escritura de las actualizaciones y llama a update()  pasando en este datos. Si la actualización
+ se ha realizado correctamente (es decir, el número de filas afectadas es más que cero), notificamos a 
+todos los interesados que los datos han cambiado.
+
+delete(): Este es similar a la actualizacion de datos (update()). La URI puede o no puede contener el ID
+de el registro en particular para eliminar.
+
+query(): A diferencia de insert (), update () y delete (), consulta () devuelve los datos reales y que
+no modifica el conjunto de datos subyacente. Es análogo a instrucción SELECT de SQL.Para consultar los 
+datos a través de un proveedor de contenido se utiliza este metodo.
+Aquí usamos SQLiteQueryBuilder para que sea más fácil armar una potencial instrucción de consulta compleja.
+Una vez más, utilizamos el matcher para ver qué tipo de la URI que nos dieron. Si la URI contiene el ID del 
+registro para consultar, tenemos que extraer ese ID y incluirlo en la consulta. Aquí es donde SQLiteQueryBuilder
+hace que sea más fácil que la construcción de una cadena larga. Especifique el orden de clasificación de los 
+datos devueltos, si no se especifica se utiliza el ordenamiento por defecto. Tenemos que abrir la base de datos,
+ en este caso sólo para lectura. Tenga en cuenta que la llamada base de datos tiene dos parámetros adicionales 
+que corresponden a la agrupación y que tienen componentes de una sentencia SELECT de SQL. Porque proveedores de
+contenido no admiten esta función, simplemente pasamos en nulo.Dile al cursor que depende de los datos que se
+especifican en el presente URI. En otras palabras, cuando el insert(), update() o delete() notifican a la 
+aplicación que los datos ha cambiado, este cursor sabrá que puede que desee actualizar sus datos. Devolución de 
+los datos reales en la forma de un cursor.
+
+b) Cursor: Un cursor es una colección de filas. Ejemplo de codigo de un cursor:
+
+if (cur.moveToFirst() == false){
+   //el cursor está vacío
+   return;
+}
+
+//El cursor ahora apunta a la primera fila
+// Accedemos a las columnas
+int nameColumnIndex = cur.getColumnIndex(People.NAME);
+String name = cur.getString(nameColumnIndex);
+
+
+//Veamos ahora como iterar sobre un cursor
+while(cur.moveToNext()){
+   //El curosr se ha movido correctamente
+   //Accedemos a los campos
+}

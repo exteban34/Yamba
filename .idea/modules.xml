@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Laboratorio3/Laboratorio3.iml" filepath="$PROJECT_DIR$/Laboratorio3/Laboratorio3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Yamba.iml" filepath="$PROJECT_DIR$/Yamba.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Laboratorio4_Services/Laboratorio4_Services.iml" filepath="$PROJECT_DIR$/Laboratorio4_Services/Laboratorio4_Services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Laboratorio5_ContentProviders/Laboratorio5_ContentProviders.iml" filepath="$PROJECT_DIR$/Laboratorio5_ContentProviders/Laboratorio5_ContentProviders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yamba-master.iml" filepath="$PROJECT_DIR$/Yamba-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app2/app2.iml" filepath="$PROJECT_DIR$/app2/app2.iml" />
     </modules>
